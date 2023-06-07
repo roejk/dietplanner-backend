@@ -1,4 +1,4 @@
-package com.rojek.dietplanner.Enum;
+package com.rojek.dietplanner.type;
 
 public enum UserRole {
     USER,

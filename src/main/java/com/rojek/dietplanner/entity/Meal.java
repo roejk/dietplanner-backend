@@ -1,4 +1,4 @@
-package com.rojek.dietplanner.Entity;
+package com.rojek.dietplanner.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -13,7 +13,7 @@ import lombok.*;
 @Builder
 public class Meal {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long mealId;
     @Column(unique = true, nullable = false)
     private String name;

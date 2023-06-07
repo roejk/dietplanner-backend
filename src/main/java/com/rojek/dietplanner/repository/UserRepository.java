@@ -1,6 +1,6 @@
-package com.rojek.dietplanner.Repository;
+package com.rojek.dietplanner.repository;
 
-import com.rojek.dietplanner.Entity.User;
+import com.rojek.dietplanner.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

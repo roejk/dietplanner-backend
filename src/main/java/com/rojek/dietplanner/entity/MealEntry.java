@@ -1,9 +1,10 @@
-package com.rojek.dietplanner.Entity;
+package com.rojek.dietplanner.entity;
 
+import com.rojek.dietplanner.type.MealEntryType;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity()
 @Table(name = "meal_entries")
@@ -15,7 +16,7 @@ import java.util.Date;
 @Builder
 public class MealEntry {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long mealEntryId;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -23,8 +24,9 @@ public class MealEntry {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "meal_id")
     private Meal meal;
+//    @Temporal(value = TemporalType.DATE)
     @Column(nullable = false)
-    private Date date;
+    private LocalDate date;
     @Column(nullable = false)
     private Double amount;
     @Column(nullable = false)

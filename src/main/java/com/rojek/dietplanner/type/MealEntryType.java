@@ -1,4 +1,4 @@
-package com.rojek.dietplanner.Entity;
+package com.rojek.dietplanner.type;
 
 public enum MealEntryType {
     BREAKFAST,

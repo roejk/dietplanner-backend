@@ -1,6 +1,6 @@
-package com.rojek.dietplanner.Entity;
+package com.rojek.dietplanner.entity;
 
-import com.rojek.dietplanner.Enum.UserRole;
+import com.rojek.dietplanner.type.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +20,7 @@ import java.util.Collections;
 @Builder
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
     @Column(unique = true, nullable = false)
     private String username;
@@ -31,7 +31,10 @@ public class User implements UserDetails {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
+
+    @Builder.Default
     private Boolean isLocked = false;
+    @Builder.Default
     private Boolean isEnabled = false;
 
     @Override
