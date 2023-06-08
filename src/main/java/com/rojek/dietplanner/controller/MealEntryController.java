@@ -31,4 +31,10 @@ public class MealEntryController {
     public ResponseEntity<MealEntryDTO> addMealEntry(@RequestBody MealEntryDTO mealEntryDTO) {
         return ResponseEntity.ok(mealEntryService.addMealEntry(mealEntryDTO));
     }
+
+    @DeleteMapping("/entry/delete/{mealEntryId}")
+    public ResponseEntity<Long> deleteMealEntry(@PathVariable Long mealEntryId) {
+        return ResponseEntity.ok(mealEntryService.deleteMealEntry(mealEntryId));
+
+    }
 }

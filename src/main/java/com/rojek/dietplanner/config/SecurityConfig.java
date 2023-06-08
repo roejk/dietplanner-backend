@@ -32,6 +32,7 @@ public class SecurityConfig {
                         "/",
                         "/api/v1/auth/**",
                         "/users",
+                        "/api/v1/food/**",
                         "/**"
                 ).permitAll()
 

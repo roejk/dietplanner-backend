@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,5 +37,14 @@ public class MealEntryService {
         mealEntryRepository.save(newEntry);
 
         return mealEntryDTO;
+    }
+
+    public Long deleteMealEntry(Long mealEntryId) {
+        Optional<MealEntry> entry = mealEntryRepository.findById(mealEntryId);
+
+        if (entry.isPresent()) {
+            mealEntryRepository.delete(entry.get());
+            return mealEntryId;
+        } else return (long) -1;
     }
 }
