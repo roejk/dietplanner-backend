@@ -5,6 +5,8 @@ import com.rojek.dietplanner.dto.MealEntryResponseDTO;
 import com.rojek.dietplanner.service.MealEntryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,22 +18,26 @@ public class MealEntryController {
 
     private final MealEntryService mealEntryService;
 
+    @PreAuthorize("#username == authentication.name")
     @GetMapping("/entries/{username}")
     public ResponseEntity<List<MealEntryResponseDTO>> getUserMealEntries(@PathVariable String username) {
         return ResponseEntity.ok(mealEntryService.getUserMealEntries(username));
     }
 
+    @PreAuthorize("#username == authentication.name")
     @GetMapping("/entries/{username}/{date}")
     public ResponseEntity<List<MealEntryResponseDTO>> getUserMealEntriesByDate(
             @PathVariable String username, @PathVariable String date) {
         return ResponseEntity.ok(mealEntryService.getUserMealEntriesByDate(username, date));
     }
 
+    @PreAuthorize("#mealEntryDTO.username == authentication.name")
     @PostMapping("/entry/add")
     public ResponseEntity<MealEntryDTO> addMealEntry(@RequestBody MealEntryDTO mealEntryDTO) {
         return ResponseEntity.ok(mealEntryService.addMealEntry(mealEntryDTO));
     }
 
+    @PostAuthorize("returnObject != -403")
     @DeleteMapping("/entry/delete/{mealEntryId}")
     public ResponseEntity<Long> deleteMealEntry(@PathVariable Long mealEntryId) {
         return ResponseEntity.ok(mealEntryService.deleteMealEntry(mealEntryId));

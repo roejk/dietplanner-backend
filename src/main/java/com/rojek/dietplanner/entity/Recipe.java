@@ -17,9 +17,9 @@ public class Recipe {
     private Long recipeId;
     @Column(unique = true, nullable = false)
     private String name;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     private String ingredients;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     private String instructions;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "meal_id")

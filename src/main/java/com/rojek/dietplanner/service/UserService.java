@@ -1,6 +1,8 @@
 package com.rojek.dietplanner.service;
 
+import com.rojek.dietplanner.dto.UserDTO;
 import com.rojek.dietplanner.entity.User;
+import com.rojek.dietplanner.helper.MapHelper;
 import com.rojek.dietplanner.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,10 +15,13 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserService implements UserDetailsService {
-    private final UserRepository userRepository;
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    private final UserRepository userRepository;
+    private final MapHelper mapHelper;
+
+    public List<UserDTO> getUsers() {
+        List<User> users = userRepository.findAll();
+        return mapHelper.mapUsersToDTO(users);
     }
 
     @Override

@@ -24,7 +24,6 @@ public class MealEntry {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "meal_id")
     private Meal meal;
-//    @Temporal(value = TemporalType.DATE)
     @Column(nullable = false)
     private LocalDate date;
     @Column(nullable = false)

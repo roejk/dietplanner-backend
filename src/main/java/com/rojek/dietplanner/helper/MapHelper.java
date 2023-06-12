@@ -1,9 +1,6 @@
 package com.rojek.dietplanner.helper;
 
-import com.rojek.dietplanner.dto.MealDTO;
-import com.rojek.dietplanner.dto.MealEntryDTO;
-import com.rojek.dietplanner.dto.MealEntryResponseDTO;
-import com.rojek.dietplanner.dto.RecipeDTO;
+import com.rojek.dietplanner.dto.*;
 import com.rojek.dietplanner.entity.Meal;
 import com.rojek.dietplanner.entity.MealEntry;
 import com.rojek.dietplanner.entity.Recipe;
@@ -111,5 +108,22 @@ public class MapHelper {
                     .meal(meal)
                     .build();
         } else return null;
+    }
+
+    public List<UserDTO> mapUsersToDTO(List<User> users) {
+        List<UserDTO> responseList = new ArrayList<>();
+        users.forEach(entry -> {
+            UserDTO userDTO = UserDTO.builder()
+                    .userId(entry.getUserId())
+                    .username(entry.getUsername())
+                    .email(entry.getEmail())
+                    .role(entry.getUserRole())
+                    .isLocked(entry.getIsLocked())
+                    .isEnabled(entry.getIsEnabled())
+                    .build();
+            responseList.add(userDTO);
+        });
+
+        return responseList;
     }
 }

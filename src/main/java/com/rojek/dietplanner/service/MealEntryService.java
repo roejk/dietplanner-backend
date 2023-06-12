@@ -7,10 +7,13 @@ import com.rojek.dietplanner.helper.MapHelper;
 import com.rojek.dietplanner.repository.MealEntryRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -40,11 +43,17 @@ public class MealEntryService {
     }
 
     public Long deleteMealEntry(Long mealEntryId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
         Optional<MealEntry> entry = mealEntryRepository.findById(mealEntryId);
 
         if (entry.isPresent()) {
-            mealEntryRepository.delete(entry.get());
-            return mealEntryId;
-        } else return (long) -1;
+            MealEntry mealEntry = entry.get();
+            if (Objects.equals(mealEntry.getUser().getUsername(), currentPrincipalName)) {
+                mealEntryRepository.delete(entry.get());
+                return mealEntryId;
+            } else return (long) -403;
+        } else return (long) -404;
     }
 }
