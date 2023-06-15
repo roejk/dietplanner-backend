@@ -20,8 +20,8 @@ public class MealController {
         return ResponseEntity.ok(mealService.getMeals());
     }
 
-    @GetMapping("/meals/{name}")
-    public ResponseEntity<List<MealDTO>> getMealsByName(@PathVariable String name) {
+    @GetMapping(value = "/meals", params = "name")
+    public ResponseEntity<List<MealDTO>> getMealsByName(@RequestParam String name) {
         return ResponseEntity.ok(mealService.getMealsByName(name));
     }
 

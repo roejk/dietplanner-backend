@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,10 +35,12 @@ public class RecipeService {
                 .toList();
     }
 
-    public RecipeDTO getRecipeByMealId(Long mealId) {
-        Optional<Recipe> recipe = recipeRepository.findByMealMealId(mealId);
+    public List<RecipeDTO> getRecipesByMealId(Long mealId) {
+        List<Recipe> recipes = recipeRepository.findAllByMealMealId(mealId);
 
-        return recipe.map(mapHelper::mapRecipeToDTO).orElse(null);
+        return recipes.stream()
+                .map(mapHelper::mapRecipeToDTO)
+                .toList();
     }
 
     public RecipeDTO addRecipe(RecipeDTO recipeDTO) {

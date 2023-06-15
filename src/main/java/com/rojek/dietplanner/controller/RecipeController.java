@@ -20,14 +20,14 @@ public class RecipeController {
         return ResponseEntity.ok(recipeService.getAllRecipes());
     }
 
-    @GetMapping("/recipes/{name}")
-    public ResponseEntity<List<RecipeDTO>> getRecipesByName(@PathVariable String name) {
+    @GetMapping(value = "/recipes", params = "name")
+    public ResponseEntity<List<RecipeDTO>> getRecipesByName(@RequestParam("name") String name) {
         return ResponseEntity.ok(recipeService.getRecipesByName(name));
     }
 
-    @GetMapping("/recipe/{mealId}")
-    public ResponseEntity<RecipeDTO> getRecipeByMealId(@PathVariable Long mealId) {
-        return ResponseEntity.ok(recipeService.getRecipeByMealId(mealId));
+    @GetMapping(value = "/recipes", params = "mealId")
+    public ResponseEntity<List<RecipeDTO>> getRecipesByMealId(@RequestParam("mealId") Long mealId) {
+        return ResponseEntity.ok(recipeService.getRecipesByMealId(mealId));
     }
 
     @PostMapping("/recipe/add")

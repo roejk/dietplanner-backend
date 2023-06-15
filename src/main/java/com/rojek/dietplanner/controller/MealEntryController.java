@@ -19,15 +19,15 @@ public class MealEntryController {
     private final MealEntryService mealEntryService;
 
     @PreAuthorize("#username == authentication.name")
-    @GetMapping("/entries/{username}")
-    public ResponseEntity<List<MealEntryResponseDTO>> getUserMealEntries(@PathVariable String username) {
+    @GetMapping(value = "/entries", params = "username")
+    public ResponseEntity<List<MealEntryResponseDTO>> getUserMealEntries(@RequestParam("username") String username) {
         return ResponseEntity.ok(mealEntryService.getUserMealEntries(username));
     }
 
     @PreAuthorize("#username == authentication.name")
-    @GetMapping("/entries/{username}/{date}")
+    @GetMapping(value = "/entries", params = {"username", "date"})
     public ResponseEntity<List<MealEntryResponseDTO>> getUserMealEntriesByDate(
-            @PathVariable String username, @PathVariable String date) {
+            @RequestParam("username") String username, @RequestParam("date") String date) {
         return ResponseEntity.ok(mealEntryService.getUserMealEntriesByDate(username, date));
     }
 

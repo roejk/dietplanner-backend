@@ -22,11 +22,6 @@ public class AuthenticationController {
     private final AuthenticationService service;
     private final LogoutHandler logoutHandler;
 
-    @GetMapping("/hello")
-    public ResponseEntity<String> hello() {
-        return ResponseEntity.ok("hello");
-    }
-
     @PostMapping("/register")
     public ResponseEntity<LoginResponseDTO> register(@RequestBody RegisterDTO request) {
         return ResponseEntity.ok(service.register(request));
