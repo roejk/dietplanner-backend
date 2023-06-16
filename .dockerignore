@@ -1,0 +1,8 @@
+.idea/
+.mvn/
+.vscode/
+.dockerignore
+.gitignore
+Dockerfile
+HELP.md
+*.iml
