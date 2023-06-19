@@ -38,14 +38,12 @@ public class MealEntryService {
     public MealEntryDTO addMealEntry(MealEntryDTO mealEntryDTO) {
         MealEntry newEntry = mapHelper.getMealEntryFromDTO(mealEntryDTO);
         mealEntryRepository.save(newEntry);
-
         return mealEntryDTO;
     }
 
     public Long deleteMealEntry(Long mealEntryId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-
         Optional<MealEntry> entry = mealEntryRepository.findById(mealEntryId);
 
         if (entry.isPresent()) {

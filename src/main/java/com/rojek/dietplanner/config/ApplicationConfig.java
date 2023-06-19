@@ -30,7 +30,7 @@ public class ApplicationConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*")
+                registry.addMapping("/**").allowedOrigins("http://localhost:4200")
                         .allowedMethods("GET", "POST", "OPTIONS", "DELETE");
             }
         };
@@ -61,5 +61,7 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public MapHelper mealHelper() { return new MapHelper(mealRepository, userRepository); }
+    public MapHelper mealHelper() {
+        return new MapHelper(mealRepository, userRepository);
+    }
 }

@@ -13,5 +13,6 @@ import java.util.List;
 @Repository
 public interface MealRepository extends JpaRepository<Meal, Long>, PagingAndSortingRepository<Meal, Long> {
     List<Meal> findAllByNameContaining(String name);
+
     @NonNull Page<Meal> findAll(@NonNull Pageable pageable);
 }

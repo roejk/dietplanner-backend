@@ -11,5 +11,6 @@ import java.util.List;
 public interface MealEntryRepository extends JpaRepository<MealEntry, Long> {
 
     List<MealEntry> findAllByUserUsername(String username);
+
     List<MealEntry> findAllByUserUsernameAndDate(String username, LocalDate date);
 }

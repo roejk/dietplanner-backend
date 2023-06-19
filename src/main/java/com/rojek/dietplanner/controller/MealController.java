@@ -22,7 +22,7 @@ public class MealController {
         return ResponseEntity.ok(mealService.getMeals());
     }
 
-    @GetMapping(value = "/meals", params = { "page", "size" })
+    @GetMapping(value = "/meals", params = {"page", "size"})
     public ResponseEntity<Page<MealDTO>> getMealsPageable(
             @RequestParam("page") int page, @RequestParam("size") int size) {
         return ResponseEntity.ok(mealService.getMeals(page, size));

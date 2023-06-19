@@ -37,19 +37,19 @@ public class SecurityConfig {
                 ).permitAll()
 
                 .requestMatchers("/api/v1/management/**")
-                    .hasAuthority(UserRole.ROLE_ADMIN.name())
+                .hasAuthority(UserRole.ROLE_ADMIN.name())
 
                 .requestMatchers("/api/v1/food/**")
-                    .authenticated()
+                .authenticated()
 
                 .anyRequest()
-                    .authenticated()
+                .authenticated()
                 .and()
-                    .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)                ;
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

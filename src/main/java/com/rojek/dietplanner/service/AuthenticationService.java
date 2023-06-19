@@ -6,10 +6,10 @@ import com.rojek.dietplanner.dto.LoginResponseDTO;
 import com.rojek.dietplanner.dto.RegisterDTO;
 import com.rojek.dietplanner.entity.Token;
 import com.rojek.dietplanner.entity.User;
-import com.rojek.dietplanner.type.TokenType;
-import com.rojek.dietplanner.type.UserRole;
 import com.rojek.dietplanner.repository.TokenRepository;
 import com.rojek.dietplanner.repository.UserRepository;
+import com.rojek.dietplanner.type.TokenType;
+import com.rojek.dietplanner.type.UserRole;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -98,7 +98,7 @@ public class AuthenticationService {
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         final String refreshToken;
         final String username;
-        if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return;
         }
         refreshToken = authHeader.substring(7);

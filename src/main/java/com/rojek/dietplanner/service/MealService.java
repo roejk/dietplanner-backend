@@ -57,7 +57,6 @@ public class MealService {
     }
 
     public Integer addMealsFromCSV(MultipartFile file) {
-
         try (Reader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             CsvToBean<Meal> csvToBean = new CsvToBeanBuilder<Meal>(reader)
                     .withType(Meal.class)
@@ -70,7 +69,6 @@ public class MealService {
         } catch (Exception ex) {
             return -1;
         }
-
         return 200;
     }
 }

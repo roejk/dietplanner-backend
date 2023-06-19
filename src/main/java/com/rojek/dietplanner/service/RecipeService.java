@@ -14,16 +14,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RecipeService {
 
-
     private final RecipeRepository recipeRepository;
     private final MapHelper mapHelper;
-
 
     public List<RecipeDTO> getAllRecipes() {
         List<Recipe> recipes = recipeRepository.findAll();
         List<RecipeDTO> recipeDTOList = new ArrayList<>();
         recipes.forEach(recipe -> recipeDTOList.add(mapHelper.mapRecipeToDTO(recipe)));
-
         return recipeDTOList;
     }
 
@@ -37,7 +34,6 @@ public class RecipeService {
 
     public List<RecipeDTO> getRecipesByMealId(Long mealId) {
         List<Recipe> recipes = recipeRepository.findAllByMealMealId(mealId);
-
         return recipes.stream()
                 .map(mapHelper::mapRecipeToDTO)
                 .toList();
@@ -46,9 +42,6 @@ public class RecipeService {
     public RecipeDTO addRecipe(RecipeDTO recipeDTO) {
         Recipe newRecipe = mapHelper.getRecipeFromDTO(recipeDTO);
         recipeRepository.save(newRecipe);
-
         return recipeDTO;
     }
-
-
 }
